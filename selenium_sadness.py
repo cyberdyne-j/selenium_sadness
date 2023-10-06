@@ -3,7 +3,8 @@ import os
 
 from dotenv import load_dotenv
 from selenium import webdriver
-from selenium.webdriver.chrome.service import Service
+# from selenium.webdriver.chrome.service import Service
+from selenium.webdriver.chrome.service import Service as ChromeService
 from webdriver_manager.chrome import ChromeDriverManager
 
 load_dotenv()
@@ -30,7 +31,9 @@ class Crawller(object):
 
     async def fetch_data(self):
         print(f"start of fetch_data:\ngonna go to url: {self.url}")
-        browser = webdriver.Chrome(options=self.chrome_options)
+        # browser = webdriver.Chrome(options=self.chrome_options)
+        chrome_service = ChromeService(ChromeDriverManager().install())
+		browser = webdriver.Chrome(service=chrome_service, options=self.chrome_options)
         print(f"brower initialized with options for {self.url}: {browser}")
         browser.get(self.url)
         await asyncio.sleep(0.001)
@@ -41,7 +44,7 @@ class Crawller(object):
 
 
 async def main():
-    number_of_offices = 10
+    number_of_offices = 50
     base_dir = os.getenv("CHROME_BINARY_PATH", "/usr/bin")
     print(f"starting test with {number_of_offices} offices\n")
     print(f"using base dir: {base_dir}\n")
