@@ -32,7 +32,7 @@ class Crawller(object):
     async def fetch_data(self):
         print(f"start of fetch_data:\ngonna go to url: {self.url}")
         # browser = webdriver.Chrome(options=self.chrome_options)
-        chrome_servic = ChromeService(ChromeDriverManager().install())
+        chrome_service = ChromeService(ChromeDriverManager().install())
 	browser = webdriver.Chrome(service=chrome_service, options=self.chrome_options)
         print(f"brower initialized with options for {self.url}: {browser}")
         browser.get(self.url)
