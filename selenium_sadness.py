@@ -33,7 +33,7 @@ class Crawller(object):
         print(f"start of fetch_data:\ngonna go to url: {self.url}")
         # browser = webdriver.Chrome(options=self.chrome_options)
         chrome_servic = ChromeService(ChromeDriverManager().install())
-	    browser = webdriver.Chrome(service=chrome_service, options=self.chrome_options)
+	browser = webdriver.Chrome(service=chrome_service, options=self.chrome_options)
         print(f"brower initialized with options for {self.url}: {browser}")
         browser.get(self.url)
         await asyncio.sleep(0.001)
